@@ -22,6 +22,13 @@ public class ProfileRestController {
 
     @GetMapping("/profile/{profileId}")
     public Profile getProfile(@PathVariable int profileId){
+
+        Profile theProfile = profileService.getProfile(profileId);
+
+        if(theProfile == null) {
+            throw new ProfileNotFoundException("Profile id with id " + profileId + " not found.");
+        }
+
         return profileService.getProfile(profileId);
     }
 
