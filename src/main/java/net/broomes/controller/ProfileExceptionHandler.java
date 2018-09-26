@@ -1,17 +1,19 @@
 package net.broomes.controller;
 
-import net.broomes.exception.ErrorResponse;
+import net.broomes.exception.ProfileErrorResponse;
 import net.broomes.exception.ProfileNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ProfileExceptionHandler {
 
-    public ResponseEntity<ErrorResponse> handleException(ProfileNotFoundException exc){
+    @ExceptionHandler
+    public ResponseEntity<ProfileErrorResponse> handleException(ProfileNotFoundException exc){
 
-        ErrorResponse error = new ErrorResponse(
+        ProfileErrorResponse error = new ProfileErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
                 exc.getMessage(),
                 System.currentTimeMillis());
@@ -19,9 +21,10 @@ public class ProfileExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<ErrorResponse> handleException(Exception exc){
+    @ExceptionHandler
+    public ResponseEntity<ProfileErrorResponse> handleException(Exception exc){
 
-        ErrorResponse error = new ErrorResponse(
+        ProfileErrorResponse error = new ProfileErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 exc.getMessage(),
                 System.currentTimeMillis());
