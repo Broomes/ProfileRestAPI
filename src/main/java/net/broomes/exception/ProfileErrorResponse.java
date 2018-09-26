@@ -1,6 +1,6 @@
 package net.broomes.exception;
 
-public class ErrorResponse {
+public class ProfileErrorResponse {
 
     private int status;
 
@@ -8,7 +8,7 @@ public class ErrorResponse {
 
     private long timeStamp;
 
-    public ErrorResponse() {
+    public ProfileErrorResponse() {
     }
 
     /**
@@ -17,7 +17,7 @@ public class ErrorResponse {
      * @param message
      * @param timeStamp
      */
-    public ErrorResponse(int status, String message, long timeStamp) {
+    public ProfileErrorResponse(int status, String message, long timeStamp) {
         this.status = status;
         this.message = message;
         this.timeStamp = timeStamp;
