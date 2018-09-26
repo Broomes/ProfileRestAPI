@@ -1,12 +1,10 @@
 package net.broomes.controller;
 
 import net.broomes.entity.Profile;
+import net.broomes.exception.ProfileNotFoundException;
 import net.broomes.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +23,38 @@ public class ProfileRestController {
     @GetMapping("/profile/{profileId}")
     public Profile getProfile(@PathVariable int profileId){
         return profileService.getProfile(profileId);
+    }
+
+    @PostMapping("/profile")
+    public Profile addProfile(@RequestBody Profile theProfile){
+
+        theProfile.setId(0);
+
+        profileService.saveProfile(theProfile);
+
+        return theProfile;
+    }
+
+    @PutMapping("/profile")
+    public Profile updateProfile(@RequestBody Profile theProfile){
+
+        profileService.saveProfile(theProfile);
+
+        return theProfile;
+    }
+
+    @DeleteMapping("/profile/{profileId}")
+    public String deleteProfile(@PathVariable int profileId){
+
+        Profile theProfile = profileService.getProfile(profileId);
+
+        if(theProfile == null) {
+            throw new ProfileNotFoundException("Profile id with id " + profileId + " not found.");
+        }
+
+        profileService.deleteProfile(profileId);
+
+        return "Profile " + profileId + " deleted.";
     }
 
 }
