@@ -13,7 +13,7 @@ Access to a MySql server (local or remote)
 In order to use this project, you will need to create the nessecary database and table first.
 1. Setup local MySql server either on your local machine or remotely.
 2. Run the following sql script to get your database and table created:
-'''
+```
 CREATE DATABASE  IF NOT EXISTS `profile_table`;
 USE `profile_table`;
 
@@ -32,15 +32,15 @@ CREATE TABLE `profile` (
 
 INSERT INTO `profile` VALUES 
 	(1,'Granville','Broomes','broomesgl@gmail.com','Full Stack Developer','Creating rests with the rest of them ;)');
-'''
+```
 
 3. Make the nessecary changes to the mysql-connection.properties file.
 >Note: replace **__localhost__** with your remote MySQL server's IP address if you are using a remote database server.
-'''
+```
 - jdbc.url=jdbc:mysql://localhost:3306/profile_table?useSSL=false&serverTimezone=UTC
 - jdbc.user=
 - jdbc.password=
-'''
+```
 > jdbc.user and jdbc password should be the MySQL username and password you setup in step 1.
 
 ## Deployment
