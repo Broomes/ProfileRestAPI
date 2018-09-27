@@ -6,7 +6,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -15,7 +17,12 @@ public class AdminController {
     @Autowired
     private ProfileService profileService;
 
-    @RequestMapping(name = "/admin")
+    @GetMapping("/showMyLoginPage")
+    public String showMyLoginPage() {
+        return"login";
+    }
+
+    @GetMapping(name = "/admin")
     public String admin(Model theModel){
 
         Profile theProfile = profileService.getProfile(1);
@@ -25,7 +32,7 @@ public class AdminController {
         return "admin";
     }
 
-    @RequestMapping("/processForm")
+    @GetMapping("/processForm")
     public String processForm(@ModelAttribute("profile") Profile theProfile){
 
         theProfile.setId(1);

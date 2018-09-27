@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -12,8 +13,13 @@
 <body>
 
 <h2>Admin Dashboard</h2>
+<hr>
+User: <security:authentication property="principal.username" />
+<br>
+Roles: <security:authentication property="principal.authorities" />
+<hr>
 
-<form:form action="processForm" modelAttribute="profile">
+<form:form action="processForm" modelAttribute="profile" method="get">
     <div class="form-group">
         <label>First Name</label>
         <form:input  path="firstName" type="text" class="form-control" placeholder="First Name" />
@@ -36,6 +42,14 @@
         <form:input path="description" type="text" class="form-control" placeholder="Title Description" />
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+</form:form>
+
+
+<br><br>
+
+<!-- Logout Button-->
+<form:form action="${pageContext.request.contextPath}/logout" method="post">
+    <input type="submit" value="Logout">
 </form:form>
 
 </body>
