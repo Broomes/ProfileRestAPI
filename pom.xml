@@ -100,7 +100,7 @@
 
     <build>
 
-        <finalName>portfolioAPI</finalName>
+        <finalName>api</finalName>
 
         <plugins>
             <plugin>
