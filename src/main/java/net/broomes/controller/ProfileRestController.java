@@ -25,7 +25,7 @@ public class ProfileRestController {
         Profile theProfile = profileService.getProfile(profileId);
 
         if(theProfile == null) {
-            throw new ProfileNotFoundException("Profile id with id " + profileId + " not found.");
+            throw new ProfileNotFoundException("Profile id with id " + profileId + " was not found.");
         }
 
         return profileService.getProfile(profileId);
